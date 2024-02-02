@@ -1,6 +1,8 @@
 <script lang="ts">
   import type { ITodo } from "../types/todo";
   import AddTodo from "./AddTodo.svelte";
+  import Todo from "./Todo.svelte";
+
   $: todosAmount = todos.length;
   function generateRandomId(): string {
     return Math.random().toString(16).slice(2);
@@ -28,6 +30,17 @@
     { id: "9e4273a51a37c", text: "Todo 3", completed: false },
     { id: "53ae48bf605cc", text: "Todo 4", completed: false },
   ];
+  function completeTodo(id: string): void {
+    todos = todos.map((todo) => {
+      if (todo.id === id) {
+        todo.completed = !todo.completed;
+      }
+      return todo;
+    });
+  }
+  function removeTodo(id: string): void {
+    todos = todos.filter((todo) => todo.id !== id);
+  }
 </script>
 
 <main>
@@ -35,25 +48,11 @@
 
   <section class="todos">
     <AddTodo {addTodo} {toggleCompleted} {todosAmount} />
+
     {#if todosAmount}
       <ul class="todo-list">
         {#each todos as todo (todo.id)}
-          <li class="todo">
-            <div class="todo-item">
-              <div>
-                <input
-                  checked={todo.completed}
-                  id="todo"
-                  class="toggle"
-                  type="checkbox"
-                />
-                <label aria-label="Check todo" class="todo-check" for="todo" />
-              </div>
-              <span class="todo-text">{todo.text}</span>
-              <button aria-label="Remove todo" class="remove" />
-            </div>
-            <!-- <input class="edit" type="text" autofocus /> -->
-          </li>
+          <Todo {todo} {completeTodo} {removeTodo} />
         {/each}
       </ul>
 
