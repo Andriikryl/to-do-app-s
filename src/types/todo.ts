@@ -4,3 +4,4 @@ export interface ITodo {
     completed: boolean
   }
   
+  export type FiltersType = 'all' | 'active' | 'completed'
