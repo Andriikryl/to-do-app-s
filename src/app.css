@@ -1,97 +1,74 @@
-/* Box sizing rules */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap');
+
 *,
 *::before,
 *::after {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
-main{
-  overflow: hidden;
-  z-index: 20;
-  background-color: #e5e5f7;
-  opacity: 0.8;
-  background-image:  radial-gradient(#7a1b94 0.5px, transparent 0.5px), radial-gradient(#7a1b94 0.5px, #e5e5f7 0.5px);
-  background-size: 20px 20px;
-  background-position: 0 0,10px 10px;
+:root {
+  --sans-serif: 'Inter', sans-serif;
+
+  --color-bg: hsl(220, 20%, 14%);
+  --color-text: hsl(0, 0%, 2%);
+  --color-title: hsl(357, 49%, 48%);
+  --color-highlight: hsl(0, 33%, 64%);
+  --color-gray-28: hsl(0, 0%, 28%);
+  --color-gray-58: hsl(0, 0%, 58%);
+  --color-gray-90: hsl(0, 0%, 90%);
+
+  --font-24: 1.5rem;
+  --font-32: 2rem;
+  --font-80: 5rem;
+
+  --spacing-4: 0.25rem;
+  --spacing-8: 0.5rem;
+  --spacing-16: 1rem;
+
+  --shadow-1: hsl(0, 0%, 0%, 0.1);
+
+  --radius-base: 4px;
 }
 
-/* Prevent font size inflation */
-html {
-  -moz-text-size-adjust: none;
-  -webkit-text-size-adjust: none;
-  text-size-adjust: none;
-}
-
-/* Remove default margin in favour of better control in authored CSS */
-body, h1, h2, h3, h4, h5, p,
-figure, blockquote, dl, dd {
-  margin: 0;
-  padding: 0;
-}
-
-/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
-ul[role='list'],
-ol[role='list'] {
-  list-style: none;
-}
-
-/* Set core body defaults */
+html,
 body {
-  line-height: 1.5;
-  overflow-x: hidden;
-  width: 100%;
   height: 100%;
-  min-height: 100vh;
-      
 }
 
-
-/* Set shorter line heights on headings and interactive elements */
-h1, h2, h3, h4, h5
-button, input, label {
-  line-height: 1.1;
+body {
+  display: grid;
+  place-content: center;
+  font-family: var(--sans-serif);
+  font-weight: 300;
+  line-height: 1.4;
+  background-color: var(--color-bg);
+  color: var(--color-text);
 }
 
-/* Balance text wrapping on headings */
-h1, h2,
-h3, h4, h5 {
-  text-wrap: balance;
-}
-.container{
-    max-width: 1400px;
-    margin-inline: auto;
-    padding-inline: 20px;
+label,
+input,
+button {
+  font-family: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  color: inherit;
 }
 
-/* A elements that don't have a class get default styles */
-a:not([class]) {
-  text-decoration-skip-ink: auto;
-  color: currentColor;
-}
-a{
-  text-decoration: none;
+button {
+  background: none;
+  border: 0;
+  cursor: pointer;
 }
 
-
-/* Make images easier to work with */
-img,
-picture {
-  max-width: 100%;
-  display: block;
+.hidden {
+  visibility: hidden;
 }
 
-/* Inherit fonts for inputs and buttons */
-input, button,
-textarea, select {
-  font: inherit;
-}
-
-/* Make sure textareas without a rows attribute are not tiny */
-textarea:not([rows]) {
-  min-height: 10em;
-}
-
-/* Anything that has been anchored to should have extra scroll margin */
-:target {
-  scroll-margin-block: 5ex;
+:focus,
+.toggle:focus + label,
+.toggle-all:focus + label {
+  box-shadow: 0 0 2px 2px var(--color-highlight);
+  outline: 0;
 }

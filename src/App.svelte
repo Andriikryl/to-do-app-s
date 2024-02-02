@@ -1,9 +1,8 @@
 <script lang="ts">
+  import Todos from "./components/Todos.svelte";
 </script>
 
-<main>
-  <h1>hello world</h1>
-</main>
+<Todos />
 
 <style>
 </style>
